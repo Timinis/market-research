@@ -6,11 +6,28 @@ let picOnSite = prompt('How many pictures do you want to display?');
 let uniqueArray = [];
 let maxTurns = 25;
 let totalTurns = 0;
-let catalogItemNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck',
-  'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'water-can', 'wine-glass',
+let catalogItemNames = [
+  'bag',
+  'banana',
+  'bathroom',
+  'boots',
+  'breakfast',
+  'bubblegum',
+  'chair',
+  'cthulhu',
+  'dog-duck',
+  'dragon',
+  'pen',
+  'pet-sweep',
+  'scissors',
+  'shark',
+  'sweep',
+  'tauntaun',
+  'unicorn',
+  'water-can',
+  'wine-glass'
 ];
 const divEl = document.getElementById('picture-lists');
-
 
 function CatalogItems(name) {
   this.name = name;
@@ -20,8 +37,7 @@ function CatalogItems(name) {
   this.timesClicked = 0;
 }
 
-
-catalogItemNames.forEach(function (itemName) {
+catalogItemNames.forEach(function(itemName) {
   new CatalogItems(itemName);
 });
 //Create image list
@@ -38,7 +54,7 @@ uniqueArrayGenerator();
 
 const arrayGenerator = () => {
   for (let t = 0; t < picOnSite; t++) {
-    displayedImage[t] = (Math.floor(Math.random() * catalogItemNames.length));
+    displayedImage[t] = Math.floor(Math.random() * catalogItemNames.length);
   }
 };
 
@@ -69,7 +85,6 @@ const checkImage = () => {
       if (displayedImage[i] === uniqueArray[totalTurns][j]) {
         return checkImage();
       }
-
     }
   }
   console.log(displayedImage);
@@ -82,7 +97,6 @@ const checkImage = () => {
 
   for (let i = 0; i < picOnSite; i++) {
     const imageEl = document.createElement('img');
-
     imageEl.src = allItems[uniqueArray[totalTurns][i]].path;
     imageEl.setAttribute('id', i);
 
@@ -91,8 +105,6 @@ const checkImage = () => {
 };
 
 checkImage();
-
-
 
 /*
 const allItems = [];
