@@ -56,7 +56,7 @@ function CatalogItems(name) {
 }
 
 let catalogItemNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck',
-  'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'water-can', 'wine-glass',
+  'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'water-can', 'wine-glass', 'usb'
 ];
 
 catalogItemNames.forEach(function (itemName) {
@@ -75,6 +75,39 @@ const createLi = () => {
     liEl.textContent = allItems[i].name + ' total vote is ' + allItems[i].timesClicked;
     voteTable.appendChild(liEl);
   }
+};
+let allItemsName = [];
+let allItemsVoted = [];
+let backgroundColorBar = [];
+
+
+for (let i = 0; i < allItems.length; i++) {
+  allItemsName.push(allItems[i].name);
+
+  backgroundColorBar.push('#3e95cd');
+}
+
+let createChart = () => {
+  new Chart(document.getElementById('bar-chart'), {
+    type: 'bar',
+    data: {
+      labels: allItemsName,
+      datasets: [{
+        label: 'Times CLicked',
+        backgroundColor: backgroundColorBar,
+        data: allItemsVoted
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      title: {
+        display: true,
+        text: 'Total Times Voted'
+      }
+    }
+  });
 };
 
 imageEl1.addEventListener('click', function (event) {
@@ -106,6 +139,10 @@ buttonEl.addEventListener('click', function (event) {
       alert('Please Wait till you finish');
     } else {
       createLi(event);
+      for (let i = 0; i < allItems.length; i++) {
+        allItemsVoted.push(allItems[i].timesClicked);
+      }
+      createChart(event);
       clicks++;
     }
 
