@@ -25,48 +25,50 @@ const numberStorer3 = [];
 let clicks = 0;
 
 const showRandomItem = () => {
-  let i = Math.floor(allItems.length * Math.random());
-  let j = Math.floor(allItems.length * Math.random());
-  let k = Math.floor(allItems.length * Math.random());
+  if (checkstorage < 26) {
+    let i = Math.floor(allItems.length * Math.random());
+    let j = Math.floor(allItems.length * Math.random());
+    let k = Math.floor(allItems.length * Math.random());
 
-  while (
-    i === numberStorer1[clicks] ||
-    i === numberStorer2[clicks] ||
-    i === numberStorer3[clicks]
-  ) {
-    i = Math.floor(allItems.length * Math.random());
-  }
-  while (
-    j === numberStorer1[clicks] ||
-    j === numberStorer2[clicks] ||
-    j === numberStorer3[clicks] ||
-    j === i
-  ) {
-    j = Math.floor(allItems.length * Math.random());
-  }
-  while (
-    k === numberStorer1[clicks] ||
-    k === numberStorer2[clicks] ||
-    k === numberStorer3[clicks] ||
-    k === j ||
-    k === i
-  ) {
-    k = Math.floor(allItems.length * Math.random());
-  }
-  numberStorer1.push(i);
-  imageEl1.src = allItems[i].path;
-  imageEl1.title = allItems[i].name;
-  allItems[i].timesShown++;
+    while (
+      i === numberStorer1[clicks] ||
+      i === numberStorer2[clicks] ||
+      i === numberStorer3[clicks]
+    ) {
+      i = Math.floor(allItems.length * Math.random());
+    }
+    while (
+      j === numberStorer1[clicks] ||
+      j === numberStorer2[clicks] ||
+      j === numberStorer3[clicks] ||
+      j === i
+    ) {
+      j = Math.floor(allItems.length * Math.random());
+    }
+    while (
+      k === numberStorer1[clicks] ||
+      k === numberStorer2[clicks] ||
+      k === numberStorer3[clicks] ||
+      k === j ||
+      k === i
+    ) {
+      k = Math.floor(allItems.length * Math.random());
+    }
+    numberStorer1.push(i);
+    imageEl1.src = allItems[i].path;
+    imageEl1.title = allItems[i].name;
+    allItems[i].timesShown++;
 
-  numberStorer2.push(j);
-  imageEl2.src = allItems[j].path;
-  imageEl2.title = allItems[j].name;
-  allItems[j].timesShown++;
+    numberStorer2.push(j);
+    imageEl2.src = allItems[j].path;
+    imageEl2.title = allItems[j].name;
+    allItems[j].timesShown++;
 
-  numberStorer3.push(k);
-  imageEl3.src = allItems[k].path;
-  imageEl3.title = allItems[k].name;
-  allItems[k].timesShown++;
+    numberStorer3.push(k);
+    imageEl3.src = allItems[k].path;
+    imageEl3.title = allItems[k].name;
+    allItems[k].timesShown++;
+  }
 };
 
 let catalogItemNames = [
@@ -147,31 +149,38 @@ const createChart = () => {
   });
 };
 
+
 imageEl1.addEventListener('click', function (event) {
-  showRandomItem(event);
-  allItems[numberStorer1[clicks]].timesClicked++;
-  checkstorage++;
-  clicks++;
-  localStorage.setItem('totalClicks', checkstorage);
-  localStorage.setItem('allItems', JSON.stringify(allItems));
+  if (checkstorage < 26) {
+    showRandomItem(event);
+    allItems[numberStorer1[clicks]].timesClicked++;
+    checkstorage++;
+    clicks++;
+    localStorage.setItem('totalClicks', checkstorage);
+    localStorage.setItem('allItems', JSON.stringify(allItems));
+  }
 });
 
 imageEl2.addEventListener('click', function (event) {
-  showRandomItem(event);
-  allItems[numberStorer2[clicks]].timesClicked++;
-  checkstorage++;
-  clicks++;
-  localStorage.setItem('totalClicks', checkstorage);
-  localStorage.setItem('allItems', JSON.stringify(allItems));
+  if (checkstorage < 26) {
+    showRandomItem(event);
+    allItems[numberStorer2[clicks]].timesClicked++;
+    checkstorage++;
+    clicks++;
+    localStorage.setItem('totalClicks', checkstorage);
+    localStorage.setItem('allItems', JSON.stringify(allItems));
+  }
 });
 
 imageEl3.addEventListener('click', function (event) {
-  showRandomItem(event);
-  allItems[numberStorer3[clicks]].timesClicked++;
-  checkstorage++;
-  clicks++;
-  localStorage.setItem('totalClicks', checkstorage);
-  localStorage.setItem('allItems', JSON.stringify(allItems));
+  if (checkstorage < 26) {
+    showRandomItem(event);
+    allItems[numberStorer3[clicks]].timesClicked++;
+    checkstorage++;
+    clicks++;
+    localStorage.setItem('totalClicks', checkstorage);
+    localStorage.setItem('allItems', JSON.stringify(allItems));
+  }
 });
 
 buttonEl.addEventListener('click', function (event) {
